@@ -1,10 +1,11 @@
 import userModel from '../model/usermodel.js'
+import jwt from 'jsonwebtoken'
 
 
-const registerUser = async (email, password) => {
+const registerUser = async (username, password) => {
     try {
         const createdUser = await userModel.create({
-         email: email,
+            username: username,
          password: password
        })
 
@@ -16,18 +17,24 @@ const registerUser = async (email, password) => {
 
 }
 
-const checkUser = async (email) => {
+
+const checkUser = async (username) => {
     try {
-        const check = await userModel({email});
+        const check = await userModel.findOne({username});
         return check;
     } catch (error) {
         throw error
     }
-}  
+}
+
+const generateToken = async (tokenData, secretKey, jwt_expire) => {
+    return jwt.sign(tokenData, secretKey, {expiresIn: jwt_expire});
+}
 
 const UserService = {
     registerUser,
-    checkUser
+    checkUser,
+    generateToken
 }
 
 export default UserService;

@@ -13,11 +13,14 @@ import express from "express";
 import body_parser from 'body-parser'
 import { router } from "./router/userrouter.js";
 import mongoose from "mongoose";
+import { dbrouter } from "./router/dashboardrouter.js"; 
 
 const app = express()
 
 app.use(body_parser.json())
 app.use('/', router)
+
+app.use('/',dbrouter)
 
 mongoose.connect('mongodb+srv://hahoangphuc1357:matkhau@cluster0.sd1yg8z.mongodb.net/newBadeasy')
 .then( () => {
