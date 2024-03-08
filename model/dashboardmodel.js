@@ -1,27 +1,41 @@
 import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcrypt";
-import userModel from "./usermodel.js"
+import userAdminModel from "./useradminmodel.js";
 
 
 const dashBoard = new mongoose.Schema({
-    userId: {
+    useradminId: {
         type: Schema.Types.ObjectId,
-        ref: userModel.modelName
+        ref: userAdminModel.modelName
     },
     name:{
         type: String,
         required: true
         //lowercase: true,
-        
     },
+    nameofpeople: {
+        type: String,
+        required: true
+    },
+    phonenumber: {
+        type: String,
+        required: true
+    },
+    
     location:{
         type: String,
         required: true,
     },
     image:{
         type: String,
-        required: true,
+        required: false,
     },
+    illustrationimg: [
+        {
+            type: String,
+            required:false
+        }
+    ]
 });
 
 const dashBoardModel = mongoose.model('dashboard', dashBoard);

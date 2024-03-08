@@ -13,14 +13,21 @@ import express from "express";
 import body_parser from 'body-parser'
 import { router } from "./router/userrouter.js";
 import mongoose from "mongoose";
-import { dbrouter } from "./router/dashboardrouter.js"; 
+import { dbrouter } from "./router/dashboardrouter.js";
+import { useradminrouter } from "./router/useradminrouter.js";
+import cors from "cors";
 
 const app = express()
 
-app.use(body_parser.json())
+app.use(cors())
+
+app.use(body_parser.json({ limit: '50mb' }))
+app.use(body_parser.urlencoded({ limit: '50mb', extended: true }))
 app.use('/', router)
 
 app.use('/',dbrouter)
+
+app.use('/',useradminrouter)
 
 mongoose.connect('mongodb+srv://hahoangphuc1357:matkhau@cluster0.sd1yg8z.mongodb.net/newBadeasy')
 .then( () => {

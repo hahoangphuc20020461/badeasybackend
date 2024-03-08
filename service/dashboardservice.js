@@ -1,12 +1,15 @@
-import dashBoardModel from "../model/dashboardmodel";
+import dashBoardModel from "../model/dashboardmodel.js";
 
-const newdashBoard = async (userId, name, image, location) => {
+const newdashBoard = async (useradminId, name, nameofpeople, phonenumber,location, image, illustrationimg ) => {
     try {
         const createddashBoard = await dashBoardModel.create({
-            userId: userId,
+         useradminId: useradminId,
          name: name,
+         nameofpeople: nameofpeople,
+         phonenumber: phonenumber,
+         location: location,
          image: image,
-         location: location
+         illustrationimg: illustrationimg
        })
 
        console.log(createddashBoard)
@@ -16,8 +19,22 @@ const newdashBoard = async (userId, name, image, location) => {
     }
 
 }
+const getdashBoard = async (useradminId) => {
+    try {
+        const dashBoardData = await dashBoardModel.find({
+            useradminId
+        })
+
+       console.log(dashBoardData)
+    return dashBoardData
+    } catch (error) {
+        throw error;
+    }
+
+}
 const dashBoardService = {
-    newdashBoard
+    newdashBoard,
+    getdashBoard
 }
 
 export default dashBoardService;
