@@ -1,6 +1,6 @@
 import dashBoardModel from "../model/dashboardmodel.js";
 
-const newdashBoard = async (useradminId, name, nameofpeople, phonenumber,location, image, illustrationimg ) => {
+const newdashBoard = async (useradminId, name, nameofpeople, phonenumber,location, image,  ) => {//illustrationimg
     try {
         const createddashBoard = await dashBoardModel.create({
          useradminId: useradminId,
@@ -9,7 +9,7 @@ const newdashBoard = async (useradminId, name, nameofpeople, phonenumber,locatio
          phonenumber: phonenumber,
          location: location,
          image: image,
-         illustrationimg: illustrationimg
+         //illustrationimg: illustrationimg
        })
 
        console.log(createddashBoard)
@@ -21,11 +21,12 @@ const newdashBoard = async (useradminId, name, nameofpeople, phonenumber,locatio
 }
 const getdashBoard = async (useradminId) => {
     try {
-        const dashBoardData = await dashBoardModel.find({
-            useradminId
-        })
-
-       console.log(dashBoardData)
+        const dashBoardData = await dashBoardModel.find(
+           {useradminId}
+        );
+            //const {nameofpeople, phonenumber, ...others} = dashBoardData[0]._doc
+            //return others
+       //console.log(dashBoardData)
     return dashBoardData
     } catch (error) {
         throw error;

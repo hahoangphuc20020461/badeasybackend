@@ -30,12 +30,12 @@ const dashBoard = new mongoose.Schema({
         type: String,
         required: false,
     },
-    illustrationimg: [
-        {
-            type: String,
-            required:false
-        }
-    ]
+    // illustrationimg: [
+    //     {
+    //         type: String,
+    //         required:false
+    //     }
+    // ]
 });
 
 const dashBoardModel = mongoose.model('dashboard', dashBoard);

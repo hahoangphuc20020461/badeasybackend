@@ -27,6 +27,7 @@ const checkUserAdmin = async (username) => {
 
 const generateToken = async (tokenData, secretKey, jwt_expire) => {
     return jwt.sign(tokenData, secretKey, {expiresIn: jwt_expire});
+    
 }
 
 const UserAdminService = {
